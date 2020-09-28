@@ -1,3 +1,3 @@
 git add .
-git commit -m "$@" "No CommitMessage"
-it push -u origin master
+git commit -m "$@" || git commit -m  "No CommitMessage"
+git push -u origin master
