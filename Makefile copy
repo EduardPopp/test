@@ -1,0 +1,44 @@
+##
+## EPITECH PROJECT, 2020
+## Makefile
+## File description:
+## .
+##
+
+SRC	=	crashtest.c	\
+	nb_to_str.c
+
+NAME	=	a.out
+
+INC	=	-I include/
+
+LMY	=	-L lib/my/ -lmy
+
+TEST=	stresstest
+
+TSRC	=	./tests/test_factor.c \
+			./tests/test_summand.c \
+			./tests/test_brackets.c \
+
+TFIL	=	factors.c \
+			nb_to_str.c \
+			summands.c \
+			brackets_old.c
+
+all:	$(NAME) clean
+
+$(NAME):
+	gcc $(SRC) -o $(NAME) $(LMY) $(INC) -g3
+
+clean:
+	rm -f *.o
+	rm -f *.gcno
+	rm -f *.gcda
+	rm -f *.gcov
+fclean:	clean
+	rm -f $(NAME)
+	rm -f $(TEST)
+test: 
+	gcc -o $(TEST) $(TFIL) $(TSRC) $(INC) $(LMY) --coverage -lcriterion
+	./$(TEST)
+re:	fclean all
